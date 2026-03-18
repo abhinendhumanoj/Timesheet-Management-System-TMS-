@@ -1,0 +1,39 @@
+<%- include('partials/header', { title: title }) %>
+<section class="auth-layout">
+  <div class="auth-copy">
+    <span class="eyebrow">Modern SaaS-style workspace</span>
+    <h1>Track time, manage teams, and approve work with confidence.</h1>
+    <p>
+      A clean timesheet experience for admins, project managers, and resources — built for fast daily updates and effortless weekly approvals.
+    </p>
+    <div class="credentials card credential-card">
+      <h3>Demo Accounts</h3>
+      <p><strong>Admin:</strong> admin@test.com / 123</p>
+      <p><strong>Manager:</strong> manager@test.com / 123</p>
+      <p><strong>Resource:</strong> user@test.com / 123</p>
+    </div>
+  </div>
+
+  <div class="card auth-card glass-card">
+    <div class="card-header compact">
+      <span class="eyebrow">Welcome back</span>
+      <h2>Sign in to Timesheet Pro</h2>
+      <p>Use your role-based account to access dashboards, timesheets, and approvals.</p>
+    </div>
+
+    <form method="POST" action="/login" class="form-stack">
+      <div class="field-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="field-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block">Login</button>
+    </form>
+  </div>
+</section>
+<%- include('partials/footer') %>

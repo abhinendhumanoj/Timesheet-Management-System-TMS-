@@ -1,0 +1,42 @@
+<%- include('partials/header', { title: title }) %>
+<section class="page-intro">
+  <div>
+    <span class="eyebrow">Review center</span>
+    <h1>Submitted Timesheets</h1>
+    <p>Approve completed weeks or send them back with a clear reason.</p>
+  </div>
+</section>
+
+<div class="card table-card">
+  <div class="table-wrap">
+    <table class="table approvals-table">
+      <thead>
+        <tr><th>User</th><th>Email</th><th>Week</th><th>Status</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <% timesheets.forEach((timesheet) => { %>
+          <tr>
+            <td><%= timesheet.user_name %></td>
+            <td><%= timesheet.user_email %></td>
+            <td><%= timesheet.week %></td>
+            <td><span class="status-badge status-submitted"><%= timesheet.status %></span></td>
+            <td>
+              <div class="table-actions stacked-actions">
+                <form method="POST" action="/approve" class="inline-form">
+                  <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+                  <button type="submit" class="btn btn-primary btn-small">Approve</button>
+                </form>
+                <form method="POST" action="/reject" class="inline-form reject-form modern-reject-form">
+                  <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+                  <input type="text" name="reason" placeholder="Reject reason" required>
+                  <button type="submit" class="btn btn-danger btn-small">Reject</button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('partials/footer') %>
