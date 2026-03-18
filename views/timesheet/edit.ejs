@@ -1,0 +1,36 @@
+<%- include('../partials/header', { title }) %>
+<div class="card">
+  <h1>Edit Entry</h1>
+  <form method="POST" action="/timesheet/update-entry">
+    <input type="hidden" name="entry_id" value="<%= entry.id %>">
+    <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+
+    <label>Date</label>
+    <input type="date" name="date" value="<%= entry.date %>" required>
+
+    <label>Project</label>
+    <select name="project_id" required>
+      <% projects.forEach((project) => { %>
+        <option value="<%= project.id %>" <%= project.id === entry.project_id ? 'selected' : '' %>><%= project.name %></option>
+      <% }) %>
+    </select>
+
+    <label>Task</label>
+    <select name="task_id" required>
+      <% tasks.forEach((task) => { %>
+        <option value="<%= task.id %>" <%= task.id === entry.task_id ? 'selected' : '' %>><%= task.name %> (<%= task.project_name %>)</option>
+      <% }) %>
+    </select>
+
+    <label>Hours</label>
+    <input type="number" name="hours" step="0.5" min="0.5" max="24" value="<%= entry.hours %>" required>
+
+    <label class="checkbox-label">
+      <input type="checkbox" name="billable" value="1" <%= entry.billable ? 'checked' : '' %>> Billable
+    </label>
+
+    <button type="submit">Update Entry</button>
+    <a class="button-link" href="/timesheet/new?week=<%= timesheet.week %>">Back</a>
+  </form>
+</div>
+<%- include('../partials/footer') %>
