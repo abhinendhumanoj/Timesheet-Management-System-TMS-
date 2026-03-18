@@ -1,0 +1,38 @@
+<%- include('../partials/header', { title }) %>
+<h1>Resource Management</h1>
+<div class="two-column">
+  <div class="card">
+    <h2>Create User</h2>
+    <form method="POST" action="/admin/users">
+      <label>Name</label>
+      <input type="text" name="name" required>
+
+      <label>Email</label>
+      <input type="email" name="email" required>
+
+      <label>Password</label>
+      <input type="password" name="password" required>
+
+      <label>Role</label>
+      <select name="role" required>
+        <option value="admin">Admin</option>
+        <option value="manager">Project Manager</option>
+        <option value="resource">Resource</option>
+      </select>
+
+      <button type="submit">Create User</button>
+    </form>
+  </div>
+  <div class="card">
+    <h2>Users</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
+      <tbody>
+        <% users.forEach((user) => { %>
+          <tr><td><%= user.name %></td><td><%= user.email %></td><td><%= user.role %></td></tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,33 @@
+<%- include('partials/header', { title }) %>
+<h1>Dashboard</h1>
+<div class="grid">
+  <% if (currentUser.role === 'admin') { %>
+    <div class="card stat-card">
+      <h3>Total Users</h3>
+      <p><%= dashboardData.totalUsers %></p>
+    </div>
+    <div class="card stat-card">
+      <h3>Total Projects</h3>
+      <p><%= dashboardData.totalProjects %></p>
+    </div>
+  <% } %>
+
+  <% if (currentUser.role === 'manager') { %>
+    <div class="card stat-card">
+      <h3>Pending Approvals</h3>
+      <p><%= dashboardData.pendingApprovals %></p>
+    </div>
+  <% } %>
+
+  <% if (currentUser.role === 'resource') { %>
+    <div class="card stat-card">
+      <h3>Current Timesheet Status</h3>
+      <% if (dashboardData.latestTimesheet) { %>
+        <p><%= dashboardData.latestTimesheet.week %> - <%= dashboardData.latestTimesheet.status %></p>
+      <% } else { %>
+        <p>No timesheets yet.</p>
+      <% } %>
+    </div>
+  <% } %>
+</div>
+<%- include('partials/footer') %>
