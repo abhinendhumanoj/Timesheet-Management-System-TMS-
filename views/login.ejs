@@ -1,4 +1,5 @@
 <%- include('partials/header', { title }) %>
+
 <section class="auth-layout">
   <div class="auth-copy">
     <span class="eyebrow">Modern SaaS-style workspace</span>
@@ -36,4 +37,24 @@
     </form>
   </div>
 </section>
+
+<div class="card auth-card">
+  <h1>Timesheet Management System</h1>
+  <form method="POST" action="/login">
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Password</label>
+    <input type="password" name="password" required>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <div class="credentials">
+    <p><strong>Admin:</strong> admin@test.com / 123</p>
+    <p><strong>Manager:</strong> manager@test.com / 123</p>
+    <p><strong>Resource:</strong> user@test.com / 123</p>
+  </div>
+</div>
+
 <%- include('partials/footer') %>

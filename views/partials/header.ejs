@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= title %> - TMS</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -56,4 +57,37 @@
     <% } %>
     <% if (success) { %>
       <div class="alert alert-success"><%= success %></div>
+
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <% if (currentUser) { %>
+    <nav class="navbar">
+      <div>
+        <a href="/">Dashboard</a>
+        <a href="/timesheet">Timesheets</a>
+        <% if (currentUser.role === 'admin') { %>
+          <a href="/admin/clients">Clients</a>
+          <a href="/admin/projects">Projects</a>
+          <a href="/admin/tasks">Tasks</a>
+          <a href="/admin/users">Users</a>
+        <% } %>
+        <% if (currentUser.role === 'admin' || currentUser.role === 'manager') { %>
+          <a href="/approvals">Approvals</a>
+          <a href="/reports">Reports</a>
+        <% } %>
+      </div>
+      <div>
+        <span><strong><%= currentUser.name %></strong> (<%= currentUser.role %>)</span>
+        <a class="logout-link" href="/logout">Logout</a>
+      </div>
+    </nav>
+  <% } %>
+  <main class="container">
+    <% if (error) { %>
+      <div class="alert error"><%= error %></div>
+    <% } %>
+    <% if (success) { %>
+      <div class="alert success"><%= success %></div>
+
     <% } %>

@@ -1,4 +1,5 @@
 <%- include('../partials/header', { title }) %>
+
 <section class="page-intro">
   <div>
     <span class="eyebrow">Time tracking</span>
@@ -110,6 +111,86 @@
         </tbody>
       </table>
     </div>
+
+<h1>Weekly Timesheet</h1>
+<div class="two-column">
+  <div class="card">
+    <h2>Week of <%= week %></h2>
+    <p>Status: <strong><%= timesheet.status %></strong></p>
+    <% if (timesheet.status === 'Draft') { %>
+      <form method="POST" action="/timesheet/add">
+        <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+        <input type="hidden" name="week" value="<%= week %>">
+
+        <label>Date</label>
+        <input type="date" name="date" required>
+
+        <label>Project</label>
+        <select name="project_id" required>
+          <option value="">Select project</option>
+          <% projects.forEach((project) => { %>
+            <option value="<%= project.id %>"><%= project.name %></option>
+          <% }) %>
+        </select>
+
+        <label>Task</label>
+        <select name="task_id" required>
+          <option value="">Select task</option>
+          <% tasks.forEach((task) => { %>
+            <option value="<%= task.id %>"><%= task.name %> (<%= task.project_name %>)</option>
+          <% }) %>
+        </select>
+
+        <label>Hours</label>
+        <input type="number" name="hours" step="0.5" min="0.5" max="24" required>
+
+        <label class="checkbox-label">
+          <input type="checkbox" name="billable" value="1"> Billable
+        </label>
+
+        <button type="submit">Add Entry</button>
+      </form>
+
+      <form method="POST" action="/timesheet/submit" class="inline-form">
+        <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+        <button type="submit">Submit Timesheet</button>
+      </form>
+    <% } else { %>
+      <p>This timesheet is locked because it has already been submitted or processed.</p>
+    <% } %>
+  </div>
+
+  <div class="card">
+    <h2>Entries</h2>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Project</th><th>Task</th><th>Hours</th><th>Billable</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <% entries.forEach((entry) => { %>
+          <tr>
+            <td><%= entry.date %></td>
+            <td><%= entry.project_name %></td>
+            <td><%= entry.task_name %></td>
+            <td><%= entry.hours %></td>
+            <td><%= entry.billable ? 'Yes' : 'No' %></td>
+            <td>
+              <% if (timesheet.status === 'Draft') { %>
+                <a class="button-link small-button" href="/timesheet/edit/<%= entry.id %>">Edit</a>
+                <form method="POST" action="/timesheet/delete-entry" class="inline-form">
+                  <input type="hidden" name="entry_id" value="<%= entry.id %>">
+                  <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+                  <button type="submit" class="danger">Delete</button>
+                </form>
+              <% } else { %>
+                -
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
   </div>
 </div>
 <%- include('../partials/footer') %>

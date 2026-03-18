@@ -1,4 +1,5 @@
 <%- include('partials/header', { title }) %>
+
 <section class="page-intro">
   <div>
     <span class="eyebrow">Review center</span>
@@ -38,5 +39,35 @@
       </tbody>
     </table>
   </div>
+
+<h1>Submitted Timesheets</h1>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>User</th><th>Email</th><th>Week</th><th>Status</th><th>Action</th></tr>
+    </thead>
+    <tbody>
+      <% timesheets.forEach((timesheet) => { %>
+        <tr>
+          <td><%= timesheet.user_name %></td>
+          <td><%= timesheet.user_email %></td>
+          <td><%= timesheet.week %></td>
+          <td><%= timesheet.status %></td>
+          <td>
+            <form method="POST" action="/approve" class="inline-form">
+              <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+              <button type="submit">Approve</button>
+            </form>
+            <form method="POST" action="/reject" class="inline-form reject-form">
+              <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+              <input type="text" name="reason" placeholder="Reject reason" required>
+              <button type="submit" class="danger">Reject</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
 </div>
 <%- include('partials/footer') %>

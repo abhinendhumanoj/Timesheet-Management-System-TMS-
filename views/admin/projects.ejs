@@ -1,4 +1,5 @@
 <%- include('../partials/header', { title }) %>
+
 <section class="page-intro">
   <div>
     <span class="eyebrow">Admin workspace</span>
@@ -62,6 +63,49 @@
         </tbody>
       </table>
     </div>
+
+<h1>Project Management</h1>
+<div class="two-column">
+  <div class="card">
+    <h2>Create Project</h2>
+    <form method="POST" action="/admin/projects">
+      <label>Project Name</label>
+      <input type="text" name="name" required>
+
+      <label>Client</label>
+      <select name="client_id" required>
+        <option value="">Select client</option>
+        <% clients.forEach((client) => { %>
+          <option value="<%= client.id %>"><%= client.name %></option>
+        <% }) %>
+      </select>
+
+      <label>Manager</label>
+      <select name="manager_id">
+        <option value="">Unassigned</option>
+        <% managers.forEach((manager) => { %>
+          <option value="<%= manager.id %>"><%= manager.name %></option>
+        <% }) %>
+      </select>
+
+      <button type="submit">Create Project</button>
+    </form>
+  </div>
+  <div class="card">
+    <h2>Projects</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Client</th><th>Manager</th></tr></thead>
+      <tbody>
+        <% projects.forEach((project) => { %>
+          <tr>
+            <td><%= project.name %></td>
+            <td><%= project.client_name %></td>
+            <td><%= project.manager_name || 'Unassigned' %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
   </div>
 </div>
 <%- include('../partials/footer') %>
