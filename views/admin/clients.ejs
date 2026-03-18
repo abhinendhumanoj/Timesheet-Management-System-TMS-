@@ -1,4 +1,9 @@
+
 <%- include('../partials/header', { title: title }) %>
+
+<%- include('../partials/header', { title }) %>
+
+
 <section class="page-intro">
   <div>
     <span class="eyebrow">Admin workspace</span>
@@ -37,6 +42,30 @@
         </tbody>
       </table>
     </div>
+
+
+<h1>Client Management</h1>
+<div class="two-column">
+  <div class="card">
+    <h2>Create Client</h2>
+    <form method="POST" action="/admin/clients">
+      <label>Client Name</label>
+      <input type="text" name="name" required>
+      <button type="submit">Create Client</button>
+    </form>
+  </div>
+  <div class="card">
+    <h2>Clients</h2>
+    <table>
+      <thead><tr><th>ID</th><th>Name</th></tr></thead>
+      <tbody>
+        <% clients.forEach((client) => { %>
+          <tr><td><%= client.id %></td><td><%= client.name %></td></tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+
   </div>
 </div>
 <%- include('../partials/footer') %>
