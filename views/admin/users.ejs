@@ -1,0 +1,66 @@
+<%- include('../partials/header', { title }) %>
+<section class="page-intro">
+  <div>
+    <span class="eyebrow">Admin workspace</span>
+    <h1>Resource Management</h1>
+    <p>Create user accounts for admins, managers, and resources.</p>
+  </div>
+</section>
+
+<div class="two-column">
+  <div class="card form-card">
+    <div class="card-header">
+      <h2>Create User</h2>
+      <p>Add a new account with the right role and permissions.</p>
+    </div>
+    <form method="POST" action="/admin/users" class="form-stack">
+      <div class="field-group">
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Full name" required>
+      </div>
+
+      <div class="field-group">
+        <label>Email</label>
+        <input type="email" name="email" placeholder="name@company.com" required>
+      </div>
+
+      <div class="field-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Temporary password" required>
+      </div>
+
+      <div class="field-group">
+        <label>Role</label>
+        <select name="role" required>
+          <option value="admin">Admin</option>
+          <option value="manager">Project Manager</option>
+          <option value="resource">Resource</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Create User</button>
+    </form>
+  </div>
+
+  <div class="card table-card">
+    <div class="card-header">
+      <h2>Users</h2>
+      <p>Current users and assigned roles.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
+        <tbody>
+          <% users.forEach((user) => { %>
+            <tr>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+              <td><span class="pill"><%= user.role %></span></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>
