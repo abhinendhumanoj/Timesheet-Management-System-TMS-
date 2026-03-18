@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> - TMS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="<%= currentUser ? 'app-body' : 'auth-body' %>">
+  <% if (currentUser) { %>
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <a href="/" class="brand-mark">
+          <span class="brand-logo">T</span>
+          <span>
+            <strong>Timesheet Pro</strong>
+            <small>Management System</small>
+          </span>
+        </a>
+
+        <div class="nav-links">
+          <a href="/" class="nav-link <%= title === 'Dashboard' ? 'active' : '' %>">Dashboard</a>
+          <a href="/timesheet" class="nav-link <%= title === 'Timesheets' || title === 'Weekly Timesheet' || title === 'Edit Entry' ? 'active' : '' %>">Timesheets</a>
+          <% if (currentUser.role === 'admin') { %>
+            <a href="/admin/clients" class="nav-link <%= title === 'Clients' ? 'active' : '' %>">Clients</a>
+            <a href="/admin/projects" class="nav-link <%= title === 'Projects' ? 'active' : '' %>">Projects</a>
+            <a href="/admin/tasks" class="nav-link <%= title === 'Tasks' ? 'active' : '' %>">Tasks</a>
+            <a href="/admin/users" class="nav-link <%= title === 'Users' ? 'active' : '' %>">Users</a>
+          <% } %>
+          <% if (currentUser.role === 'admin' || currentUser.role === 'manager') { %>
+            <a href="/approvals" class="nav-link <%= title === 'Approvals' ? 'active' : '' %>">Approvals</a>
+            <a href="/reports" class="nav-link <%= title === 'Reports' ? 'active' : '' %>">Reports</a>
+          <% } %>
+        </div>
+
+        <div class="nav-profile">
+          <div class="profile-chip">
+            <span class="profile-avatar"><%= currentUser.name.charAt(0) %></span>
+            <div>
+              <strong><%= currentUser.name %></strong>
+              <small><%= currentUser.role %></small>
+            </div>
+          </div>
+          <a class="btn btn-ghost logout-link" href="/logout">Logout</a>
+        </div>
+      </div>
+    </nav>
+  <% } %>
+
+  <main class="container page-fade">
+    <% if (error) { %>
+      <div class="alert alert-error"><%= error %></div>
+    <% } %>
+    <% if (success) { %>
+      <div class="alert alert-success"><%= success %></div>
+    <% } %>
