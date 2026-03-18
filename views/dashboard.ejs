@@ -1,3 +1,6 @@
+
+<%- include('partials/header', { title: title }) %>
+
 <%- include('partials/header', { title }) %>
 
 <section class="page-intro">
@@ -26,6 +29,7 @@
         <span class="stat-meta">Projects available for time logging</span>
       </div>
 
+
 <h1>Dashboard</h1>
 <div class="grid">
   <% if (currentUser.role === 'admin') { %>
@@ -50,9 +54,11 @@
         <span class="stat-meta">Submitted timesheets waiting for action</span>
       </div>
 
+
     <div class="card stat-card">
       <h3>Pending Approvals</h3>
       <p><%= dashboardData.pendingApprovals %></p>
+
 
     </div>
   <% } %>
