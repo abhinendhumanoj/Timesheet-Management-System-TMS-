@@ -1,4 +1,31 @@
 <%- include('partials/header', { title }) %>
+
+<section class="page-intro">
+  <div>
+    <span class="eyebrow">Insights</span>
+    <h1>Hours Report</h1>
+    <p>See total logged hours per user in a simple summary view.</p>
+  </div>
+</section>
+
+<div class="card table-card">
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr><th>User</th><th>Email</th><th>Total Hours</th></tr>
+      </thead>
+      <tbody>
+        <% report.forEach((row) => { %>
+          <tr>
+            <td><%= row.user_name %></td>
+            <td><%= row.email %></td>
+            <td><strong><%= row.total_hours %></strong></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
 <h1>Hours Report</h1>
 <div class="card">
   <table>
@@ -15,5 +42,6 @@
       <% }) %>
     </tbody>
   </table>
+
 </div>
 <%- include('partials/footer') %>

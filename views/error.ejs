@@ -1,6 +1,14 @@
 <%- include('partials/header', { title }) %>
+
+<div class="card narrow-card empty-state">
+  <span class="eyebrow">Something went wrong</span>
+  <h1>Error</h1>
+  <p><%= message %></p>
+  <a href="/" class="btn btn-primary">Return to Dashboard</a>
+
 <div class="card">
   <h1>Error</h1>
   <p><%= message %></p>
+
 </div>
 <%- include('partials/footer') %>

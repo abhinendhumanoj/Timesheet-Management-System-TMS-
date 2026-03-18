@@ -1,4 +1,117 @@
 <%- include('../partials/header', { title }) %>
+
+<section class="page-intro">
+  <div>
+    <span class="eyebrow">Time tracking</span>
+    <h1>Weekly Timesheet</h1>
+    <p>Capture daily work, keep entries accurate, and submit once your week is complete.</p>
+  </div>
+</section>
+
+<div class="two-column timesheet-layout">
+  <div class="card form-card">
+    <div class="card-header">
+      <h2>Week of <%= week %></h2>
+      <p>
+        Current status:
+        <span class="status-badge status-<%= timesheet.status.toLowerCase() %>"><%= timesheet.status %></span>
+      </p>
+    </div>
+
+    <% if (timesheet.status === 'Draft') { %>
+      <form method="POST" action="/timesheet/add" class="form-stack">
+        <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+        <input type="hidden" name="week" value="<%= week %>">
+
+        <div class="field-group">
+          <label>Date</label>
+          <input type="date" name="date" required>
+        </div>
+
+        <div class="field-group">
+          <label>Project</label>
+          <select name="project_id" required>
+            <option value="">Select project</option>
+            <% projects.forEach((project) => { %>
+              <option value="<%= project.id %>"><%= project.name %></option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Task</label>
+          <select name="task_id" required>
+            <option value="">Select task</option>
+            <% tasks.forEach((task) => { %>
+              <option value="<%= task.id %>"><%= task.name %> (<%= task.project_name %>)</option>
+            <% }) %>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Hours</label>
+          <input type="number" name="hours" step="0.5" min="0.5" max="24" placeholder="e.g. 8" required>
+        </div>
+
+        <label class="checkbox-label card-inline-toggle">
+          <input type="checkbox" name="billable" value="1">
+          <span>Billable entry</span>
+        </label>
+
+        <div class="action-row">
+          <button type="submit" class="btn btn-primary">Add Entry</button>
+        </div>
+      </form>
+
+      <form method="POST" action="/timesheet/submit" class="inline-form submit-form">
+        <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+        <button type="submit" class="btn btn-secondary">Submit Timesheet</button>
+      </form>
+    <% } else { %>
+      <div class="empty-state subtle-state">
+        <p>This timesheet is locked because it has already been submitted or processed.</p>
+      </div>
+    <% } %>
+  </div>
+
+  <div class="card table-card">
+    <div class="card-header">
+      <h2>Entries</h2>
+      <p>Review all logged activity for this week.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead>
+          <tr><th>Date</th><th>Project</th><th>Task</th><th>Hours</th><th>Billable</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <% entries.forEach((entry) => { %>
+            <tr>
+              <td><%= entry.date %></td>
+              <td><%= entry.project_name %></td>
+              <td><%= entry.task_name %></td>
+              <td><strong><%= entry.hours %></strong></td>
+              <td><span class="pill <%= entry.billable ? 'pill-highlight' : '' %>"><%= entry.billable ? 'Yes' : 'No' %></span></td>
+              <td>
+                <% if (timesheet.status === 'Draft') { %>
+                  <div class="table-actions">
+                    <a class="btn btn-ghost btn-small" href="/timesheet/edit/<%= entry.id %>">Edit</a>
+                    <form method="POST" action="/timesheet/delete-entry" class="inline-form">
+                      <input type="hidden" name="entry_id" value="<%= entry.id %>">
+                      <input type="hidden" name="timesheet_id" value="<%= timesheet.id %>">
+                      <button type="submit" class="btn btn-danger btn-small">Delete</button>
+                    </form>
+                  </div>
+                <% } else { %>
+                  <span class="muted">-</span>
+                <% } %>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
 <h1>Weekly Timesheet</h1>
 <div class="two-column">
   <div class="card">
@@ -77,6 +190,7 @@
         <% }) %>
       </tbody>
     </table>
+
   </div>
 </div>
 <%- include('../partials/footer') %>
