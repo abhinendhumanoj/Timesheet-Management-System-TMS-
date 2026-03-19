@@ -1,0 +1,34 @@
+<%- include('../partials/header', { title: 'Timesheets' }) %>
+<section class="page-intro page-header split-header">
+  <div>
+    <span class="eyebrow">Time tracking</span>
+    <h1>My Timesheets</h1>
+    <p>Create, review, and monitor your weekly submissions.</p>
+  </div>
+  <a class="btn btn-primary" href="/timesheet/new">Create / Open Current Week</a>
+</section>
+
+<div class="card table-card">
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr><th>Week</th><th>Status</th><th>Reason</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <% timesheets.forEach(function (timesheet) { %>
+          <tr>
+            <td><%= timesheet.week %></td>
+            <td>
+              <span class="status-badge status-<%= timesheet.status.toLowerCase() %>"><%= timesheet.status %></span>
+            </td>
+            <td><%= timesheet.rejection_reason || '-' %></td>
+            <td>
+              <a href="/timesheet/new?week=<%= timesheet.week %>" class="table-link">Open</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<%- include('../partials/footer') %>

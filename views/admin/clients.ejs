@@ -1,0 +1,42 @@
+<%- include('../partials/header', { title: 'Clients' }) %>
+<section class="page-intro">
+  <div>
+    <span class="eyebrow">Admin workspace</span>
+    <h1>Client Management</h1>
+    <p>Create and maintain your client portfolio in one clean view.</p>
+  </div>
+</section>
+
+<div class="two-column">
+  <div class="card form-card">
+    <div class="card-header">
+      <h2>Create Client</h2>
+      <p>Add a client record before assigning projects.</p>
+    </div>
+    <form method="POST" action="/admin/clients" class="form-stack">
+      <div class="field-group">
+        <label>Client Name</label>
+        <input type="text" name="name" placeholder="e.g. Acme Corporation" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Client</button>
+    </form>
+  </div>
+
+  <div class="card table-card">
+    <div class="card-header">
+      <h2>Clients</h2>
+      <p>Review all client records.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>ID</th><th>Name</th></tr></thead>
+        <tbody>
+          <% clients.forEach(function (client) { %>
+            <tr><td><%= client.id %></td><td><%= client.name %></td></tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,67 @@
+<%- include('../partials/header', { title: 'Projects' }) %>
+<section class="page-intro">
+  <div>
+    <span class="eyebrow">Admin workspace</span>
+    <h1>Project Management</h1>
+    <p>Group work by client and assign project ownership to the right manager.</p>
+  </div>
+</section>
+
+<div class="two-column">
+  <div class="card form-card">
+    <div class="card-header">
+      <h2>Create Project</h2>
+      <p>Set up a project and optionally assign a manager.</p>
+    </div>
+    <form method="POST" action="/admin/projects" class="form-stack">
+      <div class="field-group">
+        <label>Project Name</label>
+        <input type="text" name="name" placeholder="e.g. Website Revamp" required>
+      </div>
+
+      <div class="field-group">
+        <label>Client</label>
+        <select name="client_id" required>
+          <option value="">Select client</option>
+          <% clients.forEach(function (client) { %>
+            <option value="<%= client.id %>"><%= client.name %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>Manager</label>
+        <select name="manager_id">
+          <option value="">Unassigned</option>
+          <% managers.forEach(function (manager) { %>
+            <option value="<%= manager.id %>"><%= manager.name %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Create Project</button>
+    </form>
+  </div>
+
+  <div class="card table-card">
+    <div class="card-header">
+      <h2>Projects</h2>
+      <p>Track each project’s client and assigned manager.</p>
+    </div>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>Name</th><th>Client</th><th>Manager</th></tr></thead>
+        <tbody>
+          <% projects.forEach(function (project) { %>
+            <tr>
+              <td><%= project.name %></td>
+              <td><%= project.client_name %></td>
+              <td><span class="pill"><%= project.manager_name || 'Unassigned' %></span></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>
