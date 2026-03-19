@@ -1,8 +1,6 @@
-
+<%- include('../partials/header', { title: 'Timesheets' }) %>
 <%- include('../partials/header', { title: title }) %>
-
 <%- include('../partials/header', { title }) %>
-
 
 <section class="page-intro page-header split-header">
   <div>
@@ -36,6 +34,7 @@
     </table>
   </div>
 
+
 <div class="page-header">
   <h1>My Timesheets</h1>
   <a class="button-link" href="/timesheet/new">Create / Open Current Week</a>
@@ -58,7 +57,6 @@
       <% }) %>
     </tbody>
   </table>
-
 
 </div>
 <%- include('../partials/footer') %>

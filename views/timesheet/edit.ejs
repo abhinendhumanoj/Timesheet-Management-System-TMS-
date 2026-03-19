@@ -1,6 +1,5 @@
-
+<%- include('../partials/header', { title: 'Edit Entry' }) %>
 <%- include('../partials/header', { title: title }) %>
-
 <%- include('../partials/header', { title }) %>
 
 <section class="page-intro">
@@ -54,7 +53,6 @@
       <a class="btn btn-ghost" href="/timesheet/new?week=<%= timesheet.week %>">Back</a>
     </div>
 
-
 <div class="card">
   <h1>Edit Entry</h1>
   <form method="POST" action="/timesheet/update-entry">
@@ -87,7 +85,6 @@
 
     <button type="submit">Update Entry</button>
     <a class="button-link" href="/timesheet/new?week=<%= timesheet.week %>">Back</a>
-
 
   </form>
 </div>

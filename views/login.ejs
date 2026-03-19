@@ -1,8 +1,6 @@
-
+<%- include('partials/header', { title: 'Login' }) %>
 <%- include('partials/header', { title: title }) %>
-
 <%- include('partials/header', { title }) %>
-
 
 <section class="auth-layout">
   <div class="auth-copy">
@@ -42,6 +40,7 @@
   </div>
 </section>
 
+
 <div class="card auth-card">
   <h1>Timesheet Management System</h1>
   <form method="POST" action="/login">
@@ -60,6 +59,5 @@
     <p><strong>Resource:</strong> user@test.com / 123</p>
   </div>
 </div>
-
 
 <%- include('partials/footer') %>
