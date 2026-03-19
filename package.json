@@ -1,0 +1,16 @@
+{
+  "name": "timesheet-management-system",
+  "version": "1.0.0",
+  "description": "Server-rendered Timesheet Management System using Express, EJS, and SQLite",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcrypt": "file:vendor/bcrypt",
+    "ejs": "file:vendor/ejs",
+    "express": "file:vendor/express",
+    "express-session": "file:vendor/express-session",
+    "sqlite3": "file:vendor/sqlite3"
+  }
+}
