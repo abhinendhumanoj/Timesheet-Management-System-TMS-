@@ -26,7 +26,11 @@
         <label>Project</label>
         <select name="project_id" required>
           <option value="">Select project</option>
+
+          <% projects.forEach(function (project) { %>
+
           <% projects.forEach((project) => { %>
+
             <option value="<%= project.id %>"><%= project.name %></option>
           <% }) %>
         </select>
@@ -45,12 +49,17 @@
       <table class="table">
         <thead><tr><th>Name</th><th>Project</th></tr></thead>
         <tbody>
+
+          <% tasks.forEach(function (task) { %>
+
           <% tasks.forEach((task) => { %>
+
             <tr><td><%= task.name %></td><td><%= task.project_name %></td></tr>
           <% }) %>
         </tbody>
       </table>
     </div>
+
 
 <h1>Task Management</h1>
 <div class="two-column">
@@ -81,6 +90,7 @@
         <% }) %>
       </tbody>
     </table>
+
 
   </div>
 </div>

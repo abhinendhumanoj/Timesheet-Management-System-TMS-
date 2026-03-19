@@ -1,6 +1,8 @@
 <%- include('partials/header', { title: 'Dashboard' }) %>
+
 <%- include('partials/header', { title: title }) %>
 <%- include('partials/header', { title }) %>
+
 
 <section class="page-intro">
   <div>
@@ -28,6 +30,7 @@
         <span class="stat-meta">Projects available for time logging</span>
       </div>
 
+
 <h1>Dashboard</h1>
 <div class="grid">
   <% if (currentUser.role === 'admin') { %>
@@ -39,12 +42,12 @@
       <h3>Total Projects</h3>
       <p><%= dashboardData.totalProjects %></p>
 
+
     </div>
   <% } %>
 
   <% if (currentUser.role === 'manager') { %>
-
-
+main
     <div class="card stat-card accent-indigo">
       <div class="stat-icon">✅</div>
       <div>
@@ -55,9 +58,11 @@
 
 
 
+
     <div class="card stat-card">
       <h3>Pending Approvals</h3>
       <p><%= dashboardData.pendingApprovals %></p>
+
 
     </div>
   <% } %>
@@ -84,6 +89,7 @@
       <% } else { %>
         <p>No timesheets yet.</p>
       <% } %>
+
 
     </div>
   <% } %>

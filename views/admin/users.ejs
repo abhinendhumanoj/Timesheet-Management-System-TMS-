@@ -1,4 +1,5 @@
 <%- include('../partials/header', { title: 'Users' }) %>
+
 <%- include('../partials/header', { title: title }) %>
 <%- include('../partials/header', { title }) %>
 
@@ -54,7 +55,11 @@
       <table class="table">
         <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
         <tbody>
+
+          <% users.forEach(function (user) { %>
+
           <% users.forEach((user) => { %>
+
             <tr>
               <td><%= user.name %></td>
               <td><%= user.email %></td>
@@ -64,6 +69,7 @@
         </tbody>
       </table>
     </div>
+
 
 <h1>Resource Management</h1>
 <div class="two-column">

@@ -34,13 +34,16 @@
       <table class="table">
         <thead><tr><th>ID</th><th>Name</th></tr></thead>
         <tbody>
+
+          <% clients.forEach(function (client) { %>
+
           <% clients.forEach((client) => { %>
+
             <tr><td><%= client.id %></td><td><%= client.name %></td></tr>
           <% }) %>
         </tbody>
       </table>
     </div>
-
 
 
 <h1>Client Management</h1>
@@ -63,6 +66,7 @@
         <% }) %>
       </tbody>
     </table>
+
 
 
   </div>

@@ -1,6 +1,8 @@
 <%- include('partials/header', { title: 'Approvals' }) %>
+
 <%- include('partials/header', { title: title }) %>
 <%- include('partials/header', { title }) %>
+
 
 <section class="page-intro">
   <div>
@@ -17,7 +19,11 @@
         <tr><th>User</th><th>Email</th><th>Week</th><th>Status</th><th>Action</th></tr>
       </thead>
       <tbody>
+
+        <% timesheets.forEach(function (timesheet) { %>
+
         <% timesheets.forEach((timesheet) => { %>
+
           <tr>
             <td><%= timesheet.user_name %></td>
             <td><%= timesheet.user_email %></td>
@@ -41,6 +47,7 @@
       </tbody>
     </table>
   </div>
+
 
 <h1>Submitted Timesheets</h1>
 <div class="card">

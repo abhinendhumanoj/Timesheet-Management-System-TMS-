@@ -1,6 +1,7 @@
 <%- include('../partials/header', { title: 'Projects' }) %>
 <%- include('../partials/header', { title: title }) %>
 <%- include('../partials/header', { title }) %>
+
 <section class="page-intro">
   <div>
     <span class="eyebrow">Admin workspace</span>
@@ -25,7 +26,11 @@
         <label>Client</label>
         <select name="client_id" required>
           <option value="">Select client</option>
+
+          <% clients.forEach(function (client) { %>
+
           <% clients.forEach((client) => { %>
+
             <option value="<%= client.id %>"><%= client.name %></option>
           <% }) %>
         </select>
@@ -35,7 +40,10 @@
         <label>Manager</label>
         <select name="manager_id">
           <option value="">Unassigned</option>
+
+          <% managers.forEach(function (manager) { %>
           <% managers.forEach((manager) => { %>
+
             <option value="<%= manager.id %>"><%= manager.name %></option>
           <% }) %>
         </select>
@@ -54,7 +62,11 @@
       <table class="table">
         <thead><tr><th>Name</th><th>Client</th><th>Manager</th></tr></thead>
         <tbody>
+
+          <% projects.forEach(function (project) { %>
+
           <% projects.forEach((project) => { %>
+
             <tr>
               <td><%= project.name %></td>
               <td><%= project.client_name %></td>
@@ -64,6 +76,7 @@
         </tbody>
       </table>
     </div>
+
 
 
 <h1>Project Management</h1>
@@ -107,8 +120,6 @@
         <% }) %>
       </tbody>
     </table>
-
-
 
   </div>
 </div>
