@@ -1,4 +1,8 @@
 <%- include('partials/header', { title: 'Reports' }) %>
+
+<%- include('partials/header', { title: title }) %>
+<%- include('partials/header', { title }) %>
+
 <section class="page-intro">
   <div>
     <span class="eyebrow">Insights</span>
@@ -14,7 +18,11 @@
         <tr><th>User</th><th>Email</th><th>Total Hours</th></tr>
       </thead>
       <tbody>
+
         <% report.forEach(function (row) { %>
+
+        <% report.forEach((row) => { %>
+
           <tr>
             <td><%= row.user_name %></td>
             <td><%= row.email %></td>
@@ -24,5 +32,24 @@
       </tbody>
     </table>
   </div>
+
+<h1>Hours Report</h1>
+<div class="card">
+  <table>
+    <thead>
+      <tr><th>User</th><th>Email</th><th>Total Hours</th></tr>
+    </thead>
+    <tbody>
+      <% report.forEach((row) => { %>
+        <tr>
+          <td><%= row.user_name %></td>
+          <td><%= row.email %></td>
+          <td><%= row.total_hours %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+
 </div>
 <%- include('partials/footer') %>

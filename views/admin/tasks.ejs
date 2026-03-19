@@ -1,4 +1,7 @@
 <%- include('../partials/header', { title: 'Tasks' }) %>
+<%- include('../partials/header', { title: title }) %>
+<%- include('../partials/header', { title }) %>
+
 <section class="page-intro">
   <div>
     <span class="eyebrow">Admin workspace</span>
@@ -23,7 +26,11 @@
         <label>Project</label>
         <select name="project_id" required>
           <option value="">Select project</option>
+
           <% projects.forEach(function (project) { %>
+
+          <% projects.forEach((project) => { %>
+
             <option value="<%= project.id %>"><%= project.name %></option>
           <% }) %>
         </select>
@@ -42,12 +49,49 @@
       <table class="table">
         <thead><tr><th>Name</th><th>Project</th></tr></thead>
         <tbody>
+
           <% tasks.forEach(function (task) { %>
+
+          <% tasks.forEach((task) => { %>
+
             <tr><td><%= task.name %></td><td><%= task.project_name %></td></tr>
           <% }) %>
         </tbody>
       </table>
     </div>
+
+
+<h1>Task Management</h1>
+<div class="two-column">
+  <div class="card">
+    <h2>Create Task</h2>
+    <form method="POST" action="/admin/tasks">
+      <label>Task Name</label>
+      <input type="text" name="name" required>
+
+      <label>Project</label>
+      <select name="project_id" required>
+        <option value="">Select project</option>
+        <% projects.forEach((project) => { %>
+          <option value="<%= project.id %>"><%= project.name %></option>
+        <% }) %>
+      </select>
+
+      <button type="submit">Create Task</button>
+    </form>
+  </div>
+  <div class="card">
+    <h2>Tasks</h2>
+    <table>
+      <thead><tr><th>Name</th><th>Project</th></tr></thead>
+      <tbody>
+        <% tasks.forEach((task) => { %>
+          <tr><td><%= task.name %></td><td><%= task.project_name %></td></tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+
   </div>
 </div>
 <%- include('../partials/footer') %>
