@@ -1,21 +1,46 @@
-# Timesheet Management System
+# Timesheet Management System (TMS)
 
-## Overview
-A role-based web application to manage employee timesheets.
+## 📌 Overview
+A role-based web application to manage employee work hours, approvals, and reporting efficiently.
 
-## Features
+---
+
+## 🚀 Features
 - Role-based login (Admin, Manager, Resource)
-- Timesheet tracking
-- Approval workflow
-- Reports
+- Timesheet entry and tracking
+- Approval & rejection workflow
+- Reports generation
+- Clean UI with dark mode
 
-## Tech Stack
+---
+
+## 🛠 Tech Stack
 - Node.js
 - Express.js
 - EJS
 - CSS
 
-## How to Run
-1. npm install
-2. node app.js
-3. Open http://localhost:3000
+---
+
+## ⚙️ How to Run
+
+1. Clone the repository
+2. Install dependencies:
+   npm install
+3. Run the application:
+   node app.js
+4. Open browser:
+   http://localhost:3000
+
+---
+
+## 👥 Roles
+
+- Admin → Full access
+- Manager → Approvals & reports
+- Resource → Timesheet entry
+
+---
+
+## 📄 Documentation
+[Download Documentation](./Project_Documentation.docx)
