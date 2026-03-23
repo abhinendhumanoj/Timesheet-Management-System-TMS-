@@ -10,7 +10,7 @@ const approvalRoutes = require('./routes/approvalRoutes');
 const reportRoutes = require('./routes/reportRoutes');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
