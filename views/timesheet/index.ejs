@@ -1,9 +1,5 @@
 <%- include('../partials/header', { title: 'Timesheets' }) %>
 
-<%- include('../partials/header', { title: title }) %>
-<%- include('../partials/header', { title }) %>
-
-
 <section class="page-intro page-header split-header">
   <div>
     <span class="eyebrow">Time tracking</span>
@@ -17,54 +13,38 @@
   <div class="table-wrap">
     <table class="table">
       <thead>
-        <tr><th>Week</th><th>Status</th><th>Reason</th><th>Action</th></tr>
+        <tr>
+          <th>Week</th>
+          <th>Status</th>
+          <th>Reason</th>
+          <th>Action</th>
+        </tr>
       </thead>
       <tbody>
 
-        <% timesheets.forEach(function (timesheet) { %>
-
         <% timesheets.forEach((timesheet) => { %>
-
           <tr>
             <td><%= timesheet.week %></td>
+
             <td>
-              <span class="status-badge status-<%= timesheet.status.toLowerCase() %>"><%= timesheet.status %></span>
+              <span class="status-badge status-<%= timesheet.status.toLowerCase() %>">
+                <%= timesheet.status %>
+              </span>
             </td>
+
             <td><%= timesheet.rejection_reason || '-' %></td>
+
             <td>
-              <a href="/timesheet/new?week=<%= timesheet.week %>" class="table-link">Open</a>
+              <a href="/timesheet/new?week=<%= timesheet.week %>" class="table-link">
+                Open
+              </a>
             </td>
           </tr>
         <% }) %>
+
       </tbody>
     </table>
   </div>
-
-
-
-<div class="page-header">
-  <h1>My Timesheets</h1>
-  <a class="button-link" href="/timesheet/new">Create / Open Current Week</a>
 </div>
-<div class="card">
-  <table>
-    <thead>
-      <tr><th>Week</th><th>Status</th><th>Reason</th><th>Action</th></tr>
-    </thead>
-    <tbody>
-      <% timesheets.forEach((timesheet) => { %>
-        <tr>
-          <td><%= timesheet.week %></td>
-          <td><%= timesheet.status %></td>
-          <td><%= timesheet.rejection_reason || '-' %></td>
-          <td>
-            <a href="/timesheet/new?week=<%= timesheet.week %>">Open</a>
-          </td>
-        </tr>
-      <% }) %>
-    </tbody>
-  </table>
 
-
-</div>
 <%- include('../partials/footer') %>

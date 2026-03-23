@@ -1,8 +1,5 @@
 <%- include('../partials/header', { title: 'Users' }) %>
 
-<%- include('../partials/header', { title: title }) %>
-<%- include('../partials/header', { title }) %>
-
 <section class="page-intro">
   <div>
     <span class="eyebrow">Admin workspace</span>
@@ -12,12 +9,16 @@
 </section>
 
 <div class="two-column">
+
+  <!-- CREATE USER -->
   <div class="card form-card">
     <div class="card-header">
       <h2>Create User</h2>
       <p>Add a new account with the right role and permissions.</p>
     </div>
+
     <form method="POST" action="/admin/users" class="form-stack">
+
       <div class="field-group">
         <label>Name</label>
         <input type="text" name="name" placeholder="Full name" required>
@@ -43,23 +44,29 @@
       </div>
 
       <button type="submit" class="btn btn-primary">Create User</button>
+
     </form>
   </div>
 
+  <!-- USER LIST -->
   <div class="card table-card">
     <div class="card-header">
       <h2>Users</h2>
       <p>Current users and assigned roles.</p>
     </div>
+
     <div class="table-wrap">
       <table class="table">
-        <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+
         <tbody>
-
-          <% users.forEach(function (user) { %>
-
           <% users.forEach((user) => { %>
-
             <tr>
               <td><%= user.name %></td>
               <td><%= user.email %></td>
@@ -67,45 +74,11 @@
             </tr>
           <% }) %>
         </tbody>
+
       </table>
     </div>
-
-
-<h1>Resource Management</h1>
-<div class="two-column">
-  <div class="card">
-    <h2>Create User</h2>
-    <form method="POST" action="/admin/users">
-      <label>Name</label>
-      <input type="text" name="name" required>
-
-      <label>Email</label>
-      <input type="email" name="email" required>
-
-      <label>Password</label>
-      <input type="password" name="password" required>
-
-      <label>Role</label>
-      <select name="role" required>
-        <option value="admin">Admin</option>
-        <option value="manager">Project Manager</option>
-        <option value="resource">Resource</option>
-      </select>
-
-      <button type="submit">Create User</button>
-    </form>
   </div>
-  <div class="card">
-    <h2>Users</h2>
-    <table>
-      <thead><tr><th>Name</th><th>Email</th><th>Role</th></tr></thead>
-      <tbody>
-        <% users.forEach((user) => { %>
-          <tr><td><%= user.name %></td><td><%= user.email %></td><td><%= user.role %></td></tr>
-        <% }) %>
-      </tbody>
-    </table>
 
-  </div>
 </div>
+
 <%- include('../partials/footer') %>

@@ -707,3 +707,80 @@ button.danger {
     align-items: flex-start;
   }
 }
+
+.dark-mode {
+  background: #111;
+  color: #fff;
+}
+
+.dark-mode .card {
+  background: #1e1e1e;
+}
+
+/* DARK MODE */
+.dark-mode {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark-mode .card {
+  background: #1e293b;
+  border: 1px solid #334155;
+}
+
+.dark-mode .navbar {
+  background: #020617;
+}
+
+.dark-mode .table {
+  color: #e2e8f0;
+}
+
+/* MODERN CARDS */
+.card {
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* BUTTONS */
+.btn {
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-weight: 600;
+}
+
+/* NAVBAR */
+.navbar {
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+}
+
+/* GRID IMPROVEMENT */
+.grid {
+  gap: 20px;
+}
+
+/* SMOOTH TRANSITION */
+* {
+  transition: all 0.2s ease-in-out;
+}
+
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  min-height: 80vh;
+}
+
+.glass-card {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.1);
+  border-radius: 16px;
+}   
